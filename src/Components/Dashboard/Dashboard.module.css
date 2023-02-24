@@ -1,0 +1,9 @@
+@font-face {
+    font-family: Crack;
+    src: url(../../Assets/Crack.ttf);
+}
+
+
+.heading{
+    font-family: Crack;
+}
