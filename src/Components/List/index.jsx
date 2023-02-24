@@ -20,6 +20,16 @@ const Index = () => {
         window.location.reload();
     }
 
+    const changeTitle = (index, event) => {
+        event.preventDefault();
+        data[index].title = event.target.newTitle.value
+
+        localStorage.setItem("task", JSON.stringify(data))
+
+        setEditable(false);
+
+    }
+
 
     return (
         <>
@@ -36,10 +46,10 @@ const Index = () => {
                     data && data.length > 0 ? data.map((task, index) => (
                         <div className="flex items-center w-full">
                             <input type="checkbox" className='w-8 h-8 mb-8 mr-2' onClick={()=>deleteTask(index)} />
-                            {editable ? <div className='flex w-full'>
-                                <input type="text" name="" id="" className=' w-full mb-8 py-2 px-2 rounded bg-white font-semibold' defaultValue={task.title} />
-                                <button className='mb-8 px-2 text-white bg-blue-700 rounded-r'>Save</button>
-                            </div> : <div className='flex w-full'>
+                            {editable ? <form className='flex w-full' onSubmit={e => changeTitle(index, e)}>
+                                <input type="text" name="newTitle" id="" className=' w-full mb-8 py-2 px-2 rounded bg-white font-semibold' defaultValue={task.title} />
+                                <button type="submit" className='mb-8 px-2 text-white bg-blue-700 rounded-r'>Save</button>
+                            </form> : <div className='flex w-full'>
                                 <p className=' w-full mb-8 py-2 px-2 rounded bg-white' onDoubleClick={() => setEditable(true)}>{task.title}</p>
                                 <button className='mb-8 px-2 text-white bg-red-700 rounded-r' onClick={()=>deleteTask(index)}><DeleteOutlineIcon/></button>
                             </div>}
