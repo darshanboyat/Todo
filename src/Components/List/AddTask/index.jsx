@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
+import { ToastContainer, toast } from 'react-toastify';
 import './AddTask.css'
 const Index = ({ closeBtn }) => {
 
@@ -7,19 +8,29 @@ const Index = ({ closeBtn }) => {
   const handelSubmit = (event) => {
     event.preventDefault();
 
-    if(localStorage.length === 0){
-        localStorage.setItem("task", JSON.stringify([{title: event.target.title.value}]))
-      }
-      else{
-        localStorage.setItem("task", JSON.stringify([...(JSON.parse(localStorage.getItem("task"))), {title: event.target.title.value}]))
+    if (localStorage.length === 0) {
+      localStorage.setItem("task", JSON.stringify([{ title: event.target.title.value }]))
     }
-    
+    else {
+      localStorage.setItem("task", JSON.stringify([...(JSON.parse(localStorage.getItem("task"))), { title: event.target.title.value }]))
+    }
+    toast.success('Task Added successfully...', {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   }
 
 
 
   return (
     <div className='add-company-container z-50'>
+      <ToastContainer/>
       <div className="flex create-company-form-wrapper">
         <div className=" bg-white  rounded-xl">
           <div className="flex justify-around">

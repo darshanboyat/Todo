@@ -3,6 +3,7 @@ import Home from './Components/Dashboard'
 import List from './Components/List'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App() {
